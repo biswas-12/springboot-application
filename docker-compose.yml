@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: taskmaster
+      MYSQL_USER: root
+      
+
+
+  springboot:
+    build: .
+    container_name: springboot-app
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+    
+    
